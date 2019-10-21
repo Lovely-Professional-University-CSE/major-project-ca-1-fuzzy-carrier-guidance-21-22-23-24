@@ -1,0 +1,32 @@
+import sqlite3
+from tkinter import *
+import string
+
+nameVal, boardVal, streamVal, dobVal= "", "", "","",""
+lightBG, darkBG = "#eafde7", "#44484b"
+name, board, stream, dob = None, None, None, None
+cusFont = ("Times New Roman", 12, "bold")
+
+def startPROG():
+    global nameVal, dobVal, boardVal, streamVal
+    nameVal = str(name.get()).title()
+    boardVal=str(name.get()).upper()
+    dobVal = str(reg.get())
+    streamVal = str(section.get()).upper()
+    difLevel = level.get()
+    if len(nameVal) == 0:
+        info.config(text="Please Enter Valid Name")
+        return
+    elif boardVal.get() not in range(1,4):
+        info.config(text="Please Select valid BOARD to proceed")
+        return
+    elif ##DOB CONDITION:
+        info.config(text="Please Enter Valid DOB")
+        return
+    elif len(streamVal) == 0:
+        info.config(text="Please Enter Valid Stream")
+        return
+    else:
+        global first
+        first.destroy()
+        secondUI()
