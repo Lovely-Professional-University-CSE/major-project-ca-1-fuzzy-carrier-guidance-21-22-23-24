@@ -30,3 +30,21 @@ def startPROG():
         global first
         first.destroy()
         secondUI()
+        
+         print("final values")                     
+    listS1=[]
+    listS1.extend([sub1Tv,sub1Prcv,sub1Av,sub1Pv])
+    listS2=[]
+    listS2.extend([sub2Tv,sub2Prcv,sub2Av,sub2Pv])
+    listS3=[]
+    listS3.extend([sub3Tv,sub3Prcv,sub3Av,sub3Pv])
+    listS4=[]
+    listS4.extend([sub4Tv,sub4Prcv,sub4Av,sub4Pv])
+    listS5=[]
+    listS5.extend([sub5Tv,sub5Prcv,sub5Av,sub5Pv])
+    
+    print(listS1)
+    print(listS2)
+    print(listS3)
+    print(listS4)
+    print(listS5)
