@@ -2,36 +2,269 @@ import sqlite3
 from tkinter import *
 import string
 
-nameVal, boardVal, streamVal, dobVal= "", "", "","",""
+nameVal, boardVal , genVal, dobVal, streamVal="","", "", "",""
+first, second, lb= None, None, None
 lightBG, darkBG = "#eafde7", "#44484b"
-name, board, stream, dob = None, None, None, None
+
+splash = None
+
+name, reg, board, gender,dob , stream, level, info = None, None, None, None, None, None, None, None
 cusFont = ("Times New Roman", 12, "bold")
 
-def startPROG():
-    global nameVal, dobVal, boardVal, streamVal
+def startQuiz():
+    global nameVal, regVal, boardVal, dobVal, genVal, difLevel, streamVal,year
     nameVal = str(name.get()).title()
-    boardVal=str(name.get()).upper()
-    dobVal = str(reg.get())
-    streamVal = str(section.get()).upper()
-    difLevel = level.get()
+    boardVal= board.get()
+    streamVal=stream.get()
+    genVal = gender.get()
+    
     if len(nameVal) == 0:
-        info.config(text="Please Enter Valid Name")
+        info.config(text="*Please Enter Valid Name")
         return
-    elif boardVal.get() not in range(1,4):
-        info.config(text="Please Select valid BOARD to proceed")
+    elif gender.get() not in range(1,3):
+        info.config(text="*Please Select gender to proceed")
         return
-    elif ##DOB CONDITION:
-        info.config(text="Please Enter Valid DOB")
+    
+    elif board.get() not in range(1,4):
+        info.config(text="*Please Select valid BOARD to proceed")
         return
-    elif len(streamVal) == 0:
-        info.config(text="Please Enter Valid Stream")
+    elif variable.get() and variable1.get() and variable2.get()=='--':
+        info.config(text="*Please Select valid Date of Birth")
+        return
+    elif stream.get() not in range(1,4):
+        info.config(text="*Please Select valid STREAM to proceed")
         return
     else:
+        
         global first
         first.destroy()
-        secondUI()
+        secondIN()
+
+    '''elif(variable.get()!='--' and variable1.get()!='--' and variable2.get()!='--'):
+        nik=variable2.get()
+        print(nik)
+        year=nik
+        kil=variable.get()           
+        day=kil
+        if (year % 4)!= 0:
+            if (year % 100) != 0:
+                if (year % 400) != 0 and day>=29:
+                    info.config(text="*Error: There are only 28 days in Feb in the selected year")
+        return'''
         
-         print("final values")                     
+                   
+def secondIN():
+    global name, board, reg, section, stream,  level, name, reg, section, level, info, first, gender
+    global second, sub1T ,sub1Tv,sub1Prc,sub1A,sub1P
+    global sub2T,sub2Prc,sub2P,sub2A
+    global sub3T,sub3Prc,sub3P,sub3A
+    global sub4T,sub4Prc,sub4P,sub4A
+    global sub5T,sub5Prc,sub5P,sub5A
+    global variable,variable1,variable2
+    
+    global sub1Tv, sub1Prcv, sub1Av, sub1Pv, sub1
+    global sub2Tv, sub2Prcv, sub2Av, sub2Pv, sub2
+    global sub3Tv, sub3Prcv, sub3Av, sub3Pv, sub3 
+    global sub4Tv, sub4Prcv, sub4Av, sub4Pv, sub4
+    global sub5Tv, sub5Prcv, sub5Av, sub5Pv, sub5
+    second = Tk(className=" Quizi")
+    second.wm_attributes('-fullscreen', 'true')
+    bg = PhotoImage(master=second,file="bg.png")
+    Label(second, image=bg).place(relwidth=1, relheight=1)
+    close = PhotoImage(master=second, file="close.png")
+    Button(second, bd=0, image=close, bg=lightBG, activebackground=lightBG, command=second.destroy).place(x=1320,y=10)
+
+    Label(second,text="Enter Your Academic Details", font=("Courier",30,"bold underline"),bg=lightBG, fg="#27292b").place(x=350,y=25)
+
+    
+    
+    Label(second, text="Subject", fg="#27292b",font=("Courier",16,"bold"), bg=lightBG).place(x=480, y=100)   
+    Label(second, text="Theory", fg="#27292b",font=("Courier",16,"bold"), bg=lightBG).place(x=660, y=100)
+    Label(second, text="Practical", fg="#27292b",font=("Courier",16,"bold"), bg=lightBG).place(x=810, y=100)
+    Label(second, text="Attendance", fg="#27292b",font=("Courier",16,"bold"), bg=lightBG).place(x=985,y=100)
+    Label(second, text="Project", fg="#27292b",font=("Courier",16,"bold"), bg=lightBG).place(x=1150, y=100)
+
+    Label(second, text="Language I(ENG)", fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=140)
+    Label(second, text="Language II", fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=180)
+    if(streamVal==1):
+        Label(second, text="Mathematics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=220)
+    elif(streamVal==2):
+        Label(second, text="History",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=220)
+    else:
+        Label(second, text="Accountancy",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=220)
+
+    if(streamVal==1):
+        Label(second, text="Physics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=260)
+    elif(streamVal==2):
+        Label(second, text="Geography",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=260)
+    else:
+        Label(second, text="Economics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=260)
+
+    if(streamVal==1):
+        Label(second, text="Chemistry",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=300)
+    elif(streamVal==2):
+        Label(second, text="Political Sci.",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=300)
+    else:
+        Label(second, text="Business Std.",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=300)
+
+
+
+#for i in range(5):
+
+
+ #       sub[i]
+    
+    sub1T=Entry(second,font=("Arial",14))
+    sub1T.place(x=660,y=140)
+    sub1Prc=Entry(second,font=("Arial",14))
+    sub1Prc.place(x=810,y=140)
+    sub1A=Entry(second,font=("Arial",14))
+    sub1A.place(x=980,y=140)
+    sub1P=Entry(second,font=("Arial",14))
+    sub1P.place(x=1120,y=140)
+    sub1Tv=sub1T.get()
+    sub1Prcv=sub1Prc.get()
+    sub1Av=sub1A.get()
+    sub1Pv=sub1P.get()
+   
+    #sub2
+    sub2T=IntVar()
+    sub2Prc=IntVar()
+    sub2A=IntVar()
+    sub2P=IntVar()
+        
+    sub2T=Entry(second,font=("Arial",14))
+    sub2T.place(x=660,y=180)
+    sub2Prc=Entry(second,font=("Arial",14))
+    sub2Prc.place(x=810,y=180)
+    sub2A=Entry(second,font=("Arial",14))
+    sub2A.place(x=980,y=180)
+    sub2P=Entry(second,font=("Arial",14))
+    sub2P.place(x=1120,y=180)
+    
+    sub2Tv=sub2T.get()
+    sub2Prcv=sub2Prc.get()
+    sub2Av=sub2A.get()
+    sub2Pv=sub2P.get()        
+
+    #sub3
+    sub3T=IntVar()
+    sub3Prc=IntVar()
+    sub3A=IntVar()
+    sub3P=IntVar()
+
+      
+    sub3T=Entry(second,font=("Arial",14))
+    sub3T.place(x=660,y=220)
+    sub3Prc=Entry(second,font=("Arial",14))
+    sub3Prc.place(x=810,y=220)
+    sub3A=Entry(second,font=("Arial",14))
+    sub3A.place(x=980,y=220)
+    sub3P=Entry(second,font=("Arial",14))
+    sub3P.place(x=1120,y=220)
+    
+    sub3Tv=sub3T.get()
+    sub3Prcv=sub3Prc.get()
+    sub3Av=sub3A.get()
+    sub3Pv=sub3P.get()        
+
+    #sub3
+
+#sub4
+    sub4T=IntVar()
+    sub4Prc=IntVar()
+    sub4A=IntVar()
+    sub4P=IntVar()
+      
+    sub4T=Entry(second,font=("Arial",14))
+    sub4T.place(x=660,y=260)
+    sub4Prc=Entry(second,font=("Arial",14))
+    sub4Prc.place(x=810,y=260)
+    sub4A=Entry(second,font=("Arial",14))
+    sub4A.place(x=980,y=260)
+    sub4P=Entry(second,font=("Arial",14))
+    sub4P.place(x=1120,y=260)
+    
+         
+    #sub4=[]
+    #sub4.extend([sub4Tv,sub4Prcv,sub4Av,sub4Pv])
+
+#sub5
+    sub5T=IntVar()
+    sub5Prc=IntVar()
+    sub5A=IntVar()
+    sub5P=IntVar()
+      
+    sub5T=Entry(second,font=("Arial",14))
+    sub5T.place(x=660,y=300)
+    sub5Prc=Entry(second,font=("Arial",14))
+    sub5Prc.place(x=810,y=300)
+    sub5A=Entry(second,font=("Arial",14))
+    sub5A.place(x=980,y=300)
+    sub5P=Entry(second,font=("Arial",14))
+    sub5P.place(x=1120,y=300)
+    
+    Label(second,text="Guidelines :",font=("Arial",12),bg=darkBG,fg="red").place(x=510,y=520)
+    Label(second,text="*Language II mentioned above may vary from candidate to candidate", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=550)
+    Label(second,text="*Language II could be HINDI, SANSKRIT, FRENCH, TELUGU ", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=580)
+    Label(second,text="*It is mandatory for the candidate to enter the marks for all the above mentioned subjects ", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=610)
+    
+    board= IntVar()
+    gender=IntVar()   
+    level = IntVar()
+    stream= IntVar()
+    
+    Button(second, text="submit", bd=0,relief=RIDGE, bg=darkBG,activebackground=darkBG, command=proceed).place(x=520, y=640)
+
+            #dataBASE
+    #con = sqlite3.connect("results.db")
+    ##->coc = sqlite3.connect("nikhil.db")
+    ##->cin = coc.cursor()
+    #for i in range(4):
+        #cursor.execute("CREATE TABLE member (mem_id INTEGER NOT NULL PRIMARY KEY  AUTOINCREMENT, username TEXT, password TEXT)")
+        #cursor.execute("INSERT INTO member (username, password) VALUES('admin', 'admin')")
+        ##->cin.execute("CREATE TABLE Result")
+        #cursor.execute("INSERT INTO Resukt (username, password) VALUES('admin', 'admin')")
+        
+       ##-> cin.execute("Insert into Result values(?,?,?,?)",(listT[i], listPrc[i], listA[i], listP[i]))
+    ##->coc.commit()
+
+
+    print(sub1Tv)
+    second.mainloop()
+    #codeendshere
+
+def proceed():
+    global second
+    global variable,variable1,variable2
+    sub1Tv=sub1T.get()
+    sub1Prcv=sub1Prc.get()
+    sub1Av=sub1A.get()
+    sub1Pv=sub1P.get()
+
+    sub2Tv=sub2T.get()
+    sub2Prcv=sub2Prc.get()
+    sub2Av=sub2A.get()
+    sub2Pv=sub2P.get()
+
+    sub3Tv=sub3T.get()
+    sub3Prcv=sub3Prc.get()
+    sub3Av=sub3A.get()
+    sub3Pv=sub3P.get()
+    
+    sub4Tv=sub4T.get()
+    sub4Prcv=sub4Prc.get()
+    sub4Av=sub4A.get()
+    sub4Pv=sub4P.get()
+
+    sub5Tv=sub5T.get()
+    sub5Prcv=sub5Prc.get()
+    sub5Av=sub5A.get()
+    sub5Pv=sub5P.get()  
+
+    
+    
+    print("final values")                     
     listS1=[]
     listS1.extend([sub1Tv,sub1Prcv,sub1Av,sub1Pv])
     listS2=[]
@@ -48,3 +281,185 @@ def startPROG():
     print(listS3)
     print(listS4)
     print(listS5)
+    print(variable.get())
+    print(variable1.get())
+    print(variable2.get())
+    
+    second.destroy()
+    global lb
+    lb = Tk()
+    lb.wm_attributes("-fullscreen", "true")
+    bg = PhotoImage(file="bg.png")
+    
+    Label(lb, image=bg).place(relwidth=1, relheight=1)
+    close = PhotoImage(file="close.png")
+    Button(lb, bd=0, image=close, bg="#eafde7", activebackground="#eafde7", command=lb.destroy).place(x=1320,y=10)
+    print("value1 is")
+    print(sub1Tv)
+    Label(lb, text="Hello ", font=("Courier",20,"bold underline"),bg=lightBG, fg="#27292b").place(x=580,y=5)
+    Label(lb, text="name: " +nameVal, font=("Courier",15,"bold"),bg=lightBG).place(x=490,y=400)
+    Label(lb, text="subject :"+str(sub1Tv),font=("Courier",15,"bold"),bg=lightBG).place(x=580,y=200)
+    Button(lb, bd=0, image=close, bg="#eafde7", activebackground="#eafde7", command=lb.destroy).place(x=1320,y=10)
+
+    Label(lb, text="Result", font=("Courier",30,"bold underline"),bg=lightBG, fg="#27292b").place(x=620,y=50)   
+    if boardVal==1:
+        boardtext="CBSE"
+    elif boardVal==2:
+        boardtext="SSC"
+    else:
+        boardtext="OTHERS"
+        
+    Label(lb, text="12th Board: " + boardtext, font=("Courier",15),bg=lightBG).place(x=490,y=180)
+    if genVal==1:
+        gentext="Male"
+
+    else:
+        gentext="Female"
+    Label(lb, text="Gender: " + gentext, font=("Courier", 15),bg=lightBG).place(x=490,y=240)
+    '''
+    if difLevel==1:
+        diftext = "Easy"
+    elif difLevel==2:
+        diftext = "Moderate"
+    else:
+        diftext = "Tough"
+        
+    Label(third, text="Difficulty: " + diftext, font=("Courier", 15),bg=lightBG).place(x=490,y=270)'''
+    if streamVal==1:
+        streamtext="Science"
+    elif streamVal==2:
+        streamtext="Commerce"
+    else:
+        streamtext="Humanities/Arts"
+    Label(lb, text="Stream: " + streamtext, font=("Courier",15),bg=lightBG).place(x=490,y=300)
+    Label(lb, text="DOB: " + str(variable.get()) +"/"+str(variable1.get())+"/" +str(variable2.get()), font=("Courier",15),bg=lightBG).place(x=490,y=300)
+    
+   
+    res = PhotoImage(file="restart_quiz.png")
+
+    Button(lb, text="Edit", bd=0,relief=RIDGE, image=res,bg=darkBG,activebackground=darkBG,command=secondIN()).place(x=580, y=570)
+
+    #con = sqlite3.connect("results.db")
+    ##->coc=sqlite3.connect("nikhil.db")
+    ##->cin = coc.cursor()
+    ##->cin.execute("Select * from Result LIMIT 5")
+    ##->leaderData = cin.fetchall()
+    
+
+ #   F1 = Frame(lb, bg=lightBG)
+  #  F1.place(x=400,y=200)
+  #  for z in range(5):
+   #     Label(F1, text="subject "+str(z+1),font=("Comic Sans MS",14), bg=lightBG, fg="#27292b").grid(row=z,column=0,padx=10,pady=10)
+    #    Label(F1, text=leaderData[z][0],font=("Comic Sans MS",14), bg=lightBG, fg="#27292b").grid(row=z,column=1,padx=10,pady=10)
+        #Label(F1, text=leaderData[z][1],font=("Comic Sans MS",14), bg=lightBG, fg="#27292b").grid(row=z,column=2,padx=10,pady=10)
+     #   Label(F1, text=leaderData[z][1],font=("Comic Sans MS",14), bg=lightBG, fg="#27292b").grid(row=z,column=2,padx=10,pady=10)
+      #  Label(F1, text=leaderData[z][2],font=("Comic Sans MS",14), bg=lightBG, fg="#27292b").grid(row=z,column=3,padx=10,pady=10)
+       # Label(F1, text=leaderData[z][3],font=("Comic Sans MS",14), bg=lightBG, fg="#27292b").grid(row=z,column=4,padx=10,pady=10)
+        #Label(F1, text=leaderData[z][4],font=("Comic Sans MS",14), bg=lightBG, fg="#27292b").grid(row=z,column=5,padx=10,pady=10)'''
+
+    back = PhotoImage(file="page_back.png")
+    def goBack():
+        lb.destroy()
+        Splash()
+    Button(lb, image=back,bd=0, bg=darkBG, activebackground=darkBG, command=goBack).place(x=630,y=550)
+    Label(lb, text="Leaderboard", font=("Courier", 30, "bold underline"), bg=lightBG, fg="#27292b").place(x=580, y=50)
+    lb.mainloop()
+
+
+def restartQuiz():
+    firstUI()
+
+
+def firstUI():
+    global name, board, reg, section, stream,  level, name, reg, section, level, info, first, gender
+    global sub1Tv, sub1Prcv, sub1Av, sub1Pv, sub1T
+    global variable,variable1,variable2
+    first = Tk(className=" Quiz")
+    first.wm_attributes('-fullscreen', 'true')
+    bg = PhotoImage(master=first,file="bg.png")
+    Label(first, image=bg).place(relwidth=1, relheight=1)
+    close = PhotoImage(master=first, file="close.png")
+    Button(first, bd=0, image=close, bg=lightBG, activebackground=lightBG, command=first.destroy).place(x=1320,y=10)
+    Label(first,text="Enter Your Details", font=("Courier",30,"bold underline"),bg=lightBG, fg="#27292b").place(x=490,y=130)
+    Label(first, text="Name: ", fg="#27292b",font=("Arial Black",12), bg=lightBG).place(x=520, y=260)
+    #gender
+    Label(first, text="Gender: ",fg="#27292b" , font=("Arial Black",12), bg=lightBG). place(x=520, y=290)
+    
+    Label(first, text="12th Board: ", fg="#27292b",font=("Arial Black",12), bg=lightBG).place(x=520, y=320)
+    
+    Label(first, text="DOB: ",fg="#27292b" ,font=("Arial Black",12), bg=lightBG).place(x=520,y=350)
+    Label(first, text="Stream: ",fg="#27292b" ,font=("Arial Black",12), bg=lightBG). place(x=520, y=390)
+    name = Entry(first, font=("Arial",12))
+    board = IntVar()
+    
+    Radiobutton(first, text="CBSE",font=("Arial",12), bg=lightBG , variable=board, value=1).place(x=720, y=320)
+    Radiobutton(first, text="SSC",font=("Arial",12), bg=lightBG, variable=board, value=2).place(x=820, y=320)
+    Radiobutton(first, text="OTHERS",font=("Arial",12), bg=lightBG, variable=board, value=3).place(x=920, y=320)
+    
+    gender=IntVar()   
+    level = IntVar()
+    stream= IntVar()
+    name.place(x=720, y=260)
+    
+    Radiobutton(first, text="Male",font=("Arial",12), bg=lightBG , variable=gender, value=1).place(x=720, y=290)
+    Radiobutton(first, text="Female",font=("Arial",12), bg=lightBG , variable=gender, value=2).place(x=820, y=290)
+    Radiobutton(first, text="Science",font=("Arial",12), bg=lightBG , variable=stream, value=1).place(x=720, y=390)
+    Radiobutton(first, text="Commerce",font=("Arial",12), bg=lightBG, variable=stream, value=2).place(x=720, y=420)
+    Radiobutton(first, text="Humanities/Arts",font=("Arial",12), bg=lightBG, variable=stream, value=3).place(x=720, y=450)
+
+    OptionList=["--","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","23","24","25","26","27","28","29","30"]
+    
+    #OptionList=["--",'1','2','3',"4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","23",'24','25','26','27','28','29','30']
+    variable=StringVar(first)
+    variable.set(OptionList[0])
+    set1=OptionMenu(first,variable,*OptionList)
+    set1.config(font=('Helvetica',12),bg=lightBG)
+    set1.place(x=720,y=350)
+    
+    
+    #MonthCode
+    OptionList1=["--","Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
+    variable1=StringVar(first)
+    variable1.set(OptionList1[0])
+    set2=OptionMenu(first,variable1,*OptionList1)
+    set2.config(font=('Helvetica',12),bg=lightBG)
+    set2.place(x=775,y=350)
+    
+    #YearCode
+
+    OptionList2=['--','1998','1999','2000','2001','2002','2003','2004','2005']
+    variable2=StringVar(first)
+    variable2.set(OptionList2[0])
+    set3=OptionMenu(first,variable2,*OptionList2)
+    set3.config(font=('Helvetica',12),bg=lightBG)
+    set3.place(x=825,y=350)
+   
+
+    
+    start_img = PhotoImage(file="continue.png")
+    Button(first, text="Click Here", relief=RIDGE, image=start_img, bg=darkBG, activebackground=darkBG, bd=0, command=startQuiz).place(x=640, y=590)
+    info = Label(first, text="", font=("Helvetica",10), bg=lightBG, fg="red")
+    info.place(x=620, y=475)
+    first.mainloop()
+
+
+def Splash():
+    global splash
+    splash = Tk()
+    splash.wm_attributes("-fullscreen","true")
+    bg = PhotoImage(file="yu.png")
+    Label(first, image=bg).place(relwidth=1, relheight=1)
+    close = PhotoImage(file="close.png")
+    Button(splash, bd=0, image=close, bg="#eafde7", activebackground="#eafde7",command=splash.destroy).place(x=1320, y=10)
+    start_img = PhotoImage(file="start.png")
+    
+    Button(splash, bd=0, image=start_img, bg="#44484b", activebackground="#44484b",command=loadUI).place(x=970, y=560)
+
+    splash.mainloop()
+
+def loadUI():
+    splash.destroy()
+    firstUI()
+
+Splash()
+
