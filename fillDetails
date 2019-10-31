@@ -402,11 +402,13 @@ def proceed():
         
     if streamVal==1:
         streamtext="Science"
-        listStr.extend(["maths","phy","chem"])
+        listStr.extend(["maths","physics","chemistry"])
     elif streamVal==2:
         streamtext="Commerce"
+        listStr.extend(["history","geography","political.sci"])
     else:
         streamtext="Humanities/Arts"
+        listStr.extend(["accountancy","economics","business.std"])
         
     print(listStr)
     
