@@ -1,15 +1,27 @@
+#updated validation for subjects
+
 import sqlite3
 from tkinter import *
 from tkcalendar import Calendar
 from tkinter import ttk
 import datetime
-nameVal, boardVal , genVal, dobVal, streamVal,dobVal,checkVal="","", "", "","","",""
+global listStr,listS1,listS2,listS3
+global second, sub1T ,sub1Tv,sub1Prc,sub1A,sub1P
+global sub2T,sub2Prc,sub2P,sub2A
+global sub3T,sub3Prc,sub3P,sub3A
+global sub4T,sub4Prc,sub4P,sub4A
+global sub5T,sub5Prc,sub5P,sub5A
+global sub1Tv, sub1Prcv, sub1Av, sub1Pv, sub1
+global sub2Tv, sub2Prcv, sub2Av, sub2Pv, sub2
+global sub3Tv, sub3Prcv, sub3Av, sub3Pv, sub3 
+global sub4Tv, sub4Prcv, sub4Av, sub4Pv, sub4
+global sub5Tv, sub5Prcv, sub5Av, sub5Pv, sub5
+nameVal, boardVal , genVal, dobVal, streamVal,dobVal="","", "", "","",""
 first, second, lb= None, None, None
 lightBG, darkBG = "#eafde7", "#44484b"
 splash = None
-
-name, reg, board, gender,dob , stream, level, info, check ,nifo= None, None, None, None, None, None, None, None, None, None
-
+nik=None
+name, reg, board, gender,dob , stream, info= None, None, None, None, None, None, None
 cusFont = ("Times New Roman", 12, "bold")
 
 def Splash():
@@ -33,9 +45,9 @@ def loadUI():
 
 
 def firstUI():
-    global nif,fin,name, board, reg, section, stream,  level, name, reg, section, level, info, first, gender,dob
+    global fin, board, stream, name, info, first, gender,dob
     global sub1Tv, sub1Prcv, sub1Av, sub1Pv, sub1T
-    global variable,variable1,variable2
+    global listStr,listS1,listS2,listS3
     global dobVal
     first = Tk(className=" Quiz")
     first.wm_attributes('-fullscreen', 'true')
@@ -103,6 +115,7 @@ def firstUI():
 
 def startQuiz():
     global nameVal, regVal, boardVal, dobVal, genVal, difLevel, streamVal,year,checkVal
+    global sub1Tv,nik,sub1Prcv,sub1Av,sub1Pv
     nameVal = str(name.get()).title()
     boardVal= board.get()
     streamVal=stream.get()
@@ -133,7 +146,8 @@ def startQuiz():
     
                                 
 def secondIN():
-    global name, board, reg, section, stream,  level, name, reg, section, level, info, first, gender,dobf,fin,check,nifo
+    global listStr,listS1,listS2,listS3
+    global name, board, reg, section, stream,  level, name, reg, section, level, info, first, gender,dobf,fin,check,nik
     global second, sub1T ,sub1Tv,sub1Prc,sub1A,sub1P
     global sub2T,sub2Prc,sub2P,sub2A
     global sub3T,sub3Prc,sub3P,sub3A
@@ -190,7 +204,7 @@ def secondIN():
     sub1Prc=IntVar()
     sub1A=IntVar()
     sub1P=IntVar()
-   
+    
     sub1T=Entry(second,font=("Arial",14))
     sub1T.place(x=660,y=140)
     sub1Prc=Entry(second,font=("Arial",14))
@@ -292,12 +306,16 @@ def secondIN():
     stream= IntVar()
     res = PhotoImage(file="sub_img.png")
     Button(second, text="submit", bd=0,relief=RIDGE, image=res,bg=lightBG,activebackground=lightBG, command=proceed).place(x=700, y=420)
+    nik = Label(second, text="", font=("Helvetica",10,"bold"), bg=lightBG, fg="red")
+    nik.place(x=680, y=400)
+      
     
     second.mainloop()
 
 def proceed():
-    global checkVal,nifo
-    global second,std_id    
+    global sub1Tv,nik,sub1Prcv,sub1Av,sub1Pv
+    global second,std_id 
+    global listStr,listS1,listS2,listS3
     
     
     sub1Tv=sub1T.get()
@@ -324,7 +342,26 @@ def proceed():
     sub5Prcv=sub5Prc.get()
     sub5Av=sub5A.get()
     sub5Pv=sub5P.get()
-      
+
+    #validation for subjects
+    
+    if (len(sub1Tv)==0 or len(sub1Tv)>=4) or (len(sub2Tv)==0 or len(sub2Tv)>=4) or(len(sub3Tv)==0 or len(sub3Tv)>=4) or (len(sub4Tv)==0 or len(sub4Tv)>=4) or (len(sub5Tv)==0 or len(sub5Tv)>=4) :
+        nik.config(text="Please Enter valid Theory marks!")
+        return 
+    elif (len(sub1Prcv)==0 or len(sub1Prcv)>=3)or(len(sub2Prcv)==0 or len(sub2Prcv)>=3)or(len(sub3Prcv)==0 or len(sub3Prcv)>=3)or(len(sub4Prcv)==0 or len(sub4Prcv)>=3)or(len(sub5Prcv)==0 or len(sub5Prcv)>=3):
+        nik.config(text="Please Enter valid  Practical marks!")
+        return 
+    elif (len(sub1Av)==0 or len(sub1Av)>=4) or(len(sub2Av)==0 or len(sub2Av)>=4)or(len(sub3Av)==0 or len(sub3Av)>=4)or(len(sub4Av)==0 or len(sub4Av)>=4)or(len(sub5Av)==0 or len(sub5Av)>=4):
+        nik.config(text="Please Enter valid Attendance!")
+        return
+    elif (len(sub1Pv)==0 or len(sub1Pv)>=3) or (len(sub2Pv)==0 or len(sub2Pv)>=3) or (len(sub3Pv)==0 or len(sub3Pv)>=3) or (len(sub4Pv)==0 or len(sub4Pv)>=3) or (len(sub5Pv)==0 or len(sub5Pv)>=3):
+        nik.config(text="Please Enter valid Project marks!")
+        return     
+    else:
+        nik.config(text="click to continue")
+        
+    #checking
+   
     print("final values")                     
     listS1=[]
     listS1.extend([sub1Tv,sub1Prcv,sub1Av,sub1Pv])
@@ -349,7 +386,6 @@ def proceed():
     global coc, cursor,flag,std_id
     coc = sqlite3.connect("databaseN.db")
     cursor = coc.cursor()
-    subject=IntVar()
     
     
     def get_var_value(filename="nikhilK.txt"):
@@ -406,9 +442,12 @@ def proceed():
     elif streamVal==2:
         streamtext="Commerce"
         listStr.extend(["history","geography","political.sci"])
+
     else:
         streamtext="Humanities/Arts"
         listStr.extend(["accountancy","economics","business.std"])
+
+        
         
     print(listStr)
     
