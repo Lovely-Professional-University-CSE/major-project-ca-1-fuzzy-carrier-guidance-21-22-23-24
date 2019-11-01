@@ -1,4 +1,3 @@
-#letsGO
 #updated validation for subjects
 
 import sqlite3
@@ -27,10 +26,10 @@ cusFont = ("Times New Roman", 12, "bold")
 
 def Splash():
     global splash
-    splash = Toplevel()
+    splash = Tk()
     splash.wm_attributes("-fullscreen","true")
     bg = PhotoImage(file="yu.png")
-    Label(splash, image=bg).place(relwidth=1, relheight=1)
+    Label(first, image=bg).place(relwidth=1, relheight=1)
     close = PhotoImage(file="close.png")
     Button(splash, bd=0, image=close, bg="#eafde7", activebackground="#eafde7",command=splash.destroy).place(x=1320, y=10)
     start_img = PhotoImage(file="start.png")
@@ -50,8 +49,7 @@ def firstUI():
     global sub1Tv, sub1Prcv, sub1Av, sub1Pv, sub1T
     global listStr,listS1,listS2,listS3
     global dobVal
-    first = Toplevel()
-    first.title("Home Page")
+    first = Tk(className=" Quiz")
     first.wm_attributes('-fullscreen', 'true')
     bg = PhotoImage(master=first,file="bg.png")
     Label(first, image=bg).place(relwidth=1, relheight=1)
@@ -160,8 +158,7 @@ def secondIN():
     global sub3Tv, sub3Prcv, sub3Av, sub3Pv, sub3 
     global sub4Tv, sub4Prcv, sub4Av, sub4Pv, sub4
     global sub5Tv, sub5Prcv, sub5Av, sub5Pv, sub5
-    second = Toplevel()
-    second.title(" Quizi")
+    second = Tk(className=" Quizi")
     second.wm_attributes('-fullscreen', 'true')
     bg = PhotoImage(master=second,file="bg.png")
     Label(second, image=bg).place(relwidth=1, relheight=1)
@@ -387,7 +384,7 @@ def proceed():
     #DATABASECODE::
 
     global coc, cursor,flag,std_id
-    coc = sqlite3.connect("databaseNK.db")
+    coc = sqlite3.connect("databaseN.db")
     cursor = coc.cursor()
     
     
@@ -400,15 +397,15 @@ def proceed():
             f.write(str(val))
             return val
     std_id=get_var_value()
-    try:
-        cursor.execute("CREATE TABLE guide (std_id INTEGER NOT NULL,theory INTEGER,practical INTEGER,attendance INTEGER,project INTEGER )")
-    except:
-        cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub1Tv,sub1Prcv,sub1Av,sub1Pv))
-        cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub2Tv,sub2Prcv,sub2Av,sub2Pv))
-        cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub3Tv,sub3Prcv,sub3Av,sub3Pv))
-        cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub4Tv,sub4Prcv,sub4Av,sub4Pv))
-        cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub5Tv,sub5Prcv,sub5Av,sub5Pv))
-        
+    
+    #cursor.execute("CREATE TABLE guide (std_id INTEGER NOT NULL,theory INTEGER,practical INTEGER,attendance INTEGER,project INTEGER )")
+    
+    cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub1Tv,sub1Prcv,sub1Av,sub1Pv))
+    cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub2Tv,sub2Prcv,sub2Av,sub2Pv))
+    cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub3Tv,sub3Prcv,sub3Av,sub3Pv))
+    cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub4Tv,sub4Prcv,sub4Av,sub4Pv))
+    cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub5Tv,sub5Prcv,sub5Av,sub5Pv))
+    
     coc.commit()
     cursor.close()
     coc.close()
@@ -417,7 +414,7 @@ def proceed():
     second.destroy()
     global lb
 
-    lb = Toplevel()
+    lb = Tk()
     lb.wm_attributes("-fullscreen", "true")
     bg = PhotoImage(file="bg.png")
     listStr=[]
@@ -471,7 +468,7 @@ def proceed():
     Button(lb, bd=0, image=test, bg=darkBG, activebackground=darkBG).place(x=850,y=550)
 
 
-    coc = sqlite3.connect("databaseNK.db")
+    coc = sqlite3.connect("databaseN.db")
     cursor = coc.cursor()
     
     cursor.execute("Select * from guide order by std_id desc LIMIT 5")
@@ -499,3 +496,5 @@ def proceed():
 def goBack():
     lb.destroy()
     firstUI()
+    
+Splash()
