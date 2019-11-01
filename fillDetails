@@ -384,7 +384,7 @@ def proceed():
     #DATABASECODE::
 
     global coc, cursor,flag,std_id
-    coc = sqlite3.connect("databaseN.db")
+    coc = sqlite3.connect("databaseNK.db")
     cursor = coc.cursor()
     
     
@@ -468,7 +468,7 @@ def proceed():
     Button(lb, bd=0, image=test, bg=darkBG, activebackground=darkBG).place(x=850,y=550)
 
 
-    coc = sqlite3.connect("databaseN.db")
+    coc = sqlite3.connect("databaseNK.db")
     cursor = coc.cursor()
     
     cursor.execute("Select * from guide order by std_id desc LIMIT 5")
