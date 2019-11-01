@@ -1,3 +1,4 @@
+#letsGO
 #updated validation for subjects
 
 import sqlite3
@@ -398,7 +399,7 @@ def proceed():
             return val
     std_id=get_var_value()
     
-    #cursor.execute("CREATE TABLE guide (std_id INTEGER NOT NULL,theory INTEGER,practical INTEGER,attendance INTEGER,project INTEGER )")
+    cursor.execute("CREATE TABLE guide (std_id INTEGER NOT NULL,theory INTEGER,practical INTEGER,attendance INTEGER,project INTEGER )")
     
     cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub1Tv,sub1Prcv,sub1Av,sub1Pv))
     cursor.execute("INSERT INTO guide values(?,?,?,?,?) ",(std_id,sub2Tv,sub2Prcv,sub2Av,sub2Pv))
