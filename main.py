@@ -24,13 +24,13 @@ global sub2Tv, sub2Prcv, sub2Av, sub2Pv, sub2
 global sub3Tv, sub3Prcv, sub3Av, sub3Pv, sub3 
 global sub4Tv, sub4Prcv, sub4Av, sub4Pv, sub4
 global sub5Tv, sub5Prcv, sub5Av, sub5Pv, sub5
-global stream
-nameVal, boardVal , genVal, dobVal, streamVal,dobVal="","", "", "","",""
+global streamVal
+nameVal, boardVal , genVal, dobVal,dobVal="","", "", "",""
 first, second, lb= None, None, None
 lightBG, darkBG = "#eafde7", "#44484b"
 splash = None
 nik=None
-name, reg, board, gender,dob , info= None, None, None, None, None, None
+name, reg, board, gender,dob , info,stream= None, None , None, None, None, None, None
 cusFont = ("Times New Roman", 12, "bold")
 
 #===============================================
@@ -52,7 +52,7 @@ def Home():
     close = PhotoImage(master=top, file="close.png")
     Button(top, bd=0, image=close, bg=lightBG, activebackground=lightBG, command=top.destroy).place(x=1320,y=10)
     btn_login = Button(Form, text="Sign IN", width=25, command=login_window)
-    btn_login.place(x=900, y=80)
+    btn_login.place(x=900, y=40)
     btn_login.bind('<Return>',login_window )
     top.mainloop()
 
@@ -164,7 +164,7 @@ def login_window():
     btn_login.place(x=50, y=600)
     btn_login.bind('<Return>', Login)
     btn_signup = Button(Form, text="New User Sign Up", width=25, command=Signup_window)
-    btn_signup.place(x=950, y=20)
+    btn_signup.place(x=900, y=40)
     btn_signup.bind('<Return>', Signup_window)
     top.mainloop()
 
@@ -292,8 +292,8 @@ def Fill_details():
         Radiobutton(first, text="Male",font=("Arial",12), bg=lightBG , variable=gender, value=1).place(x=720, y=290)
         Radiobutton(first, text="Female",font=("Arial",12), bg=lightBG , variable=gender, value=2).place(x=820, y=290)
         Radiobutton(first, text="Science",font=("Arial",12), bg=lightBG , variable=stream, value=1).place(x=720, y=390)
-        Radiobutton(first, text="Commerce",font=("Arial",12), bg=lightBG, variable=stream, value=2).place(x=720, y=420)
-        Radiobutton(first, text="Humanities/Arts",font=("Arial",12), bg=lightBG, variable=stream, value=3).place(x=720, y=450)
+        Radiobutton(first, text="Humanities/Arts",font=("Arial",12), bg=lightBG, variable=stream, value=2).place(x=720, y=420)
+        Radiobutton(first, text="Commerce",font=("Arial",12), bg=lightBG, variable=stream, value=3).place(x=720, y=450)
      
         start_img = PhotoImage(file="continue.png")
         Button(first, text="Click Here", relief=RIDGE, image=start_img, bg=darkBG, activebackground=darkBG, bd=0, command=startQuiz).place(x=640, y=590)
@@ -846,80 +846,84 @@ def Recommendation_system():
     lists4=[int(i) for i in listS4]
     lists5=[int(i) for i in listS5]
     final_marks=[lists1[0]+lists1[1],lists2[0]+lists2[1],lists3[0]+lists3[1],lists4[0]+lists4[1],lists5[0]+lists5[1]]
+    
     sub1=fuzzy_calculator(lists1)
     sub2=fuzzy_calculator(lists2)
     sub3=fuzzy_calculator(lists3)
     sub4=fuzzy_calculator(lists4)
     sub5=fuzzy_calculator(lists5)
-
+    lb.destroy()
     recommendation=dict()
     eligibility=sum(final_marks)/5
-    if(stream==1):
+    
+    if(streamVal==1):
         #test for Engineering
 
         if(eligibility>60 and final_marks[0]>60 and final_marks[1]>60 and final_marks[3]>60):
             fuzz_score=(sub1+sub2+sub3)/3
-            recommendation[fuzz_score]='Engineering'
+            recommendation['Engineering']=fuzz_score
         #test for Medical
         if(eligibility>60 and final_marks[2]>60):
             fuzz_score=(sub2+sub3)/2
-            recommendation[fuzz_score]='Medical'
+            recommendation['Medical']=fuzz_score
         #test for Bsc
         if(eligibility>60 and final_marks[0]>60):
-            recommendation[sub1]='Bsc physics'
+            recommendation['Bsc physics']=sub1
         if(eligibility>60 and final_marks[1]>60):
-            recommendation[sub2]='Bsc chemistry'
+            recommendation['Bsc chemistry']=sub2
         if(eligibility>60 and final_marks[2]>60):
-            recommendation[sub3]='Bsc biology'
+            recommendation['Bsc biology']=sub3
         if(eligibility>60 and final_marks[3]>60):
-            recommendation[sub4]='Bsc mathematics'
+            recommendation['Bsc mathematics']=sub4
         if(eligibility>60 and final_marks[4]>60):
-            recommendation[sub4]='Bsc Computer Science'
-    elif (stream==2):
-        #test for Bcom
+            recommendation['Bsc Computer Science']=sub4
+    elif (streamVal==2):
+         #test for BA
 
         if(eligibility>60 ):
             fuzz_score=(sub1+sub2+sub3+sub4)/4
-            recommendation[fuzz_score]='Bcom'
+            recommendation['BA']=fuzz_score
+        #test for Journalism and Mass Communication
+        if(eligibility>60 and final_marks[2]>60 ):
+            recommendation['Journalism and Mass Communication']=sub3
+        if(eligibility>60 ):
+            recommendation['Fashion Design']=sub5
+
+       
+    else:
+         #test for Bcom
+
+        if(eligibility>60 ):
+            fuzz_score=(sub1+sub2+sub3+sub4)/4
+            recommendation['Bcom']=fuzz_score
         #test for BBA
         if(eligibility>60 and final_marks[0]>60):
             fuzz_score=(sub1+sub2)/2
-            recommendation[fuzz_score]='BBA'
+            recommendation['BBA']=fuzz_score
         #test for Bachelor of Economics
         if(eligibility>60 and final_marks[2]>60):
-            recommendation[sub3]='Bachelor of Economics'
+            recommendation['Bachelor of Economics']=sub3
         #test for LLB
         if(eligibility>60 and final_marks[4]>60):
             fuzz_score=(sub3+sub5)/2
-            recommendation[fuzz_score]='LLB'
+            recommendation['LLB']=fuzz_score
         #test for CA
         if(eligibility>60 and final_marks[1]>60):
             fuzz_score=(sub2+sub3)/2
-            recommendation[fuzz_score]='CA'
-    else:
-        #test for BA
-
-        if(eligibility>60 ):
-            fuzz_score=(sub1+sub2+sub3+sub4)/4
-            recommendation[fuzz_score]='BA'
-        #test for Journalism and Mass Communication
-        if(eligibility>60 and final_marks[2]>60 ):
-            recommendation[sub3]='Journalism and Mass Communication'
-        if(eligibility>60 ):
-            recommendation[sub5]='Fashion Design'
-
+            recommendation['CA']=fuzz_score
+       
 
     if(eligibility>50 and (sum(test_scores)/5) > 5):
         fuzz_score=sub5
-        recommendation[sub5]='Animation and Graphics Design'
+        recommendation['Animation and Graphics Design']=sub5
 
 
     if(eligibility>60 and (sum(test_scores)/5) > 5 and final_marks[0]>60 and final_marks[1]>60 and final_marks[3]>60 and final_marks[4]>60):
         fuzz_score=(sub1+sub2+sub3+sub4+sub5)/4
-        recommendation[sub5]='B.Ed'
+        recommendation['B.Ed']=sub5
        
-    for i in sorted(recommendation):
-       print(recommendation[i],": ",i)
+    for i in recommendation:
+       print(i,": ",recommendation[i])
     
     path_selection()
 def path_selection():
@@ -942,7 +946,7 @@ def path_selection():
     close = PhotoImage(master=top, file="close.png")
     Button(top, bd=0, image=close, bg=lightBG, activebackground=lightBG, command=top.destroy).place(x=1320,y=10)
     OptionList=["Animation/Graphics","BA","Bachelor of Education","Bachelor of Economics","BBA","B.Com","BSc Physics","BSc chemistry","BSc biology","BSc mathematics"
-                              "BSc Computer","CA","Journalism and Communication",
+                              ,"BSc Computer","CA","Journalism and Communication",
                               "Engineering ",
                               "LLB",
                               "Medical"]
@@ -951,7 +955,7 @@ def path_selection():
 
     opt = OptionMenu(top, variable, *OptionList)
     opt.config(width=20, font=('Helvetica', 12))
-    opt.place(x=920,y=320)
+    opt.place(x=950,y=320)
 
 
     labelTest = Label(text="", font=('Helvetica', 12), fg='white')
@@ -979,14 +983,6 @@ def show_colleges():
     top.title("Colleges")
    
     top.mainloop()
-    
-
-    
-
-    
-
-
-
 
 root=Tk()
 root.withdraw()
