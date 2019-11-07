@@ -340,7 +340,7 @@ def Fill_details():
                                     
     def secondIN():
         global listStr,listS1,listS2,listS3,listS4,listS5
-        global name, board, reg, section, stream,  level, name, reg, section, level, info, first, gender,dobf,fin,check,nik
+        global name, board,stream,info, first, gender,dobf,fin,check,nik
         global second, sub1T ,sub1Tv,sub1Prc,sub1A,sub1P
         global sub2T,sub2Prc,sub2P,sub2A
         global sub3T,sub3Prc,sub3P,sub3A
@@ -369,28 +369,36 @@ def Fill_details():
         Label(second, text="Attend.(100)", fg="#27292b",font=("Courier",16,"bold"), bg=lightBG).place(x=985,y=100)
         Label(second, text="Project(30)", fg="#27292b",font=("Courier",16,"bold"), bg=lightBG).place(x=1150, y=100)
 
-        Label(second, text="Language I(ENG)", fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=140)
-        Label(second, text="Language II", fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=180)
         if(streamVal==1):
-            Label(second, text="Mathematics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=220)
+            Label(second, text="Physics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=140)
         elif(streamVal==2):
-            Label(second, text="History",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=220)
+            Label(second, text="History",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=140)
         else:
-            Label(second, text="Accountancy",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=220)
+            Label(second, text="Bussiness",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=140)
+        
+        if(streamVal==1):
+            Label(second, text="Chemistry",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=180)
+        elif(streamVal==2):
+            Label(second, text="Geography",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=180)
+        else:
+            Label(second, text="Accountancy",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=180)
+
+      
+        if(streamVal==1):
+            Label(second, text="Biology",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=220)
+        elif(streamVal==2):
+            Label(second, text="Political Sci.",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=220)
+        else:
+            Label(second, text="Economics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=220)
 
         if(streamVal==1):
-            Label(second, text="Physics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=260)
+            Label(second, text="Mathematics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=260)
         elif(streamVal==2):
-            Label(second, text="Geography",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=260)
+            Label(second, text="Physical Edu.",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=260)
         else:
-            Label(second, text="Economics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=260)
-
-        if(streamVal==1):
-            Label(second, text="Chemistry",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=300)
-        elif(streamVal==2):
-            Label(second, text="Political Sci.",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=300)
-        else:
-            Label(second, text="Business Std.",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=300)
+            Label(second, text="Mathematics",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=260)
+                  
+        Label(second, text="English",fg="#27292b",font=("Courier",14,"bold"), bg=lightBG).place(x=490,y=300)
 
 
      #sub2
@@ -490,9 +498,10 @@ def Fill_details():
         
         
         Label(second,text="Guidelines :",font=("Arial",12),bg=darkBG,fg="red").place(x=510,y=520)
-        Label(second,text="*Language II mentioned above may vary from candidate to candidate", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=550)
-        Label(second,text="*Language II could be HINDI, SANSKRIT, FRENCH, TELUGU ", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=580)
-        Label(second,text="*It is mandatory for the candidate to enter the marks for all the above mentioned subjects ", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=610)
+        Label(second,text="*SCIENCE-Physics,Chemistry,Biology,Mathematics,English", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=550)
+        Label(second,text="*HUMANITIES/ARTS-History,Geography,Political Sci.,Physical Education.,", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=580)       
+        Label(second,text="*COMMERCE-Bussiness,Accountancy,Economics,Mathematics,English", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=610)
+        Label(second,text="*It is mandatory for the candidate to enter the marks for all the above mentioned subjects ", font=("Arial",12),bg=darkBG, fg="red").place(x=520,y=640)
         
         board= IntVar()
         gender=IntVar()   
