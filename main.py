@@ -3,7 +3,7 @@ import sqlite3
 import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
-global variable
+global variable,lb
 
 
 #==================================================
@@ -216,6 +216,7 @@ def HomeWindow():
 def Fill_details():
     #letsGO
     #updated validation for subjects
+    global lb
     def Splash():
         global splash
         splash = Toplevel()
@@ -241,6 +242,8 @@ def Fill_details():
         global sub1Tv, sub1Prcv, sub1Av, sub1Pv, sub1T
         global listStr,listS1,listS2,listS3
         global dobVal
+        global window
+        window=1
         first = Toplevel()
         first.title("Home Page")
         first.wm_attributes('-fullscreen', 'true')
@@ -705,8 +708,9 @@ def Fill_details():
        
 def take_test():
     
-
-
+    global window,lb
+    if(window==1):
+        lb.destroy()
     def function1():
         first.destroy()
         sai()
@@ -1407,7 +1411,7 @@ def take_test():
 def fuzzy_calculator(inputs):
     
     
-    theory= ctrl.Antecedent(np.arange(0,101,1),'theory')
+    theory= ctrl.Antecedent(np.arange(0,71,1),'theory')
     practical=ctrl.Antecedent(np.arange(0,31,1,),'practical')
     attendance= ctrl.Antecedent(np.arange(0,101,1),'attendance')
     project= ctrl.Antecedent(np.arange(0,31,1),'project')
@@ -1419,9 +1423,9 @@ def fuzzy_calculator(inputs):
     practical['m']=fuzz.trimf(practical.universe,[12,15,24])
     practical['h']=fuzz.trimf(practical.universe,[22,26,30])
 
-    theory['l']=fuzz.trimf(theory.universe,[0,40,50])
-    theory['m']=fuzz.trimf(theory.universe,[45,65,80])
-    theory['h']=fuzz.trimf(theory.universe,[75,85,100])
+    theory['l']=fuzz.trimf(theory.universe,[0,24,36])
+    theory['m']=fuzz.trimf(theory.universe,[24,36,48])
+    theory['h']=fuzz.trimf(theory.universe,[40,60,70])
 
     attendance['l']=fuzz.trimf(attendance.universe,[0,40,50])
     attendance['m']=fuzz.trimf(attendance.universe,[45,65,80])
@@ -1696,7 +1700,7 @@ def show_colleges():
 
     def display():
 
-        chai=Tk()
+        chai=Toplevel()
         chai.geometry("500x400+0+0")
         Label(chai,text="college id").grid(row=0,column=0)
         Label(chai,text="college Name").grid(row=0,column=1)
@@ -1712,9 +1716,9 @@ def show_colleges():
             Label(chai,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
             Label(chai,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
             i+=1   
-
+        chai.mainloop()
     def show():
-        cha=Tk()
+        cha=Toplevel()
         cha.geometry("600x400+0+0")
         Label(cha,text="college id").grid(row=0,column=0)
         Label(cha,text="college Name").grid(row=0,column=1)
@@ -1729,9 +1733,10 @@ def show_colleges():
             Label(cha,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
             Label(cha,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
             Label(cha,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1   
+            i+=1 
+        cha.mainloop()
     def show1():
-        cha1=Tk()
+        cha1=Toplevel()
         cha1.geometry("600x400+0+0")
         Label(cha1,text="college id").grid(row=0,column=0)
         Label(cha1,text="college Name").grid(row=0,column=1)
@@ -1747,9 +1752,9 @@ def show_colleges():
             Label(cha1,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
             i+=1   
 
-
+        cha1.mainloop()
     def show2() :
-        cha2=Tk()
+        cha2=Toplevel()
         cha2.geometry("600x400+0+0")
         Label(cha2,text="college id").grid(row=0,column=0)
         Label(cha2,text="college Name").grid(row=0,column=1)
@@ -1765,9 +1770,9 @@ def show_colleges():
             Label(cha2,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
             Label(cha2,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
             i+=1   
-
+        cha2.mainloop()
     def show3() :
-        cha3=Tk()
+        cha3=Toplevel()
         cha3.geometry("500x400+0+0")
         Label(cha3,text="college id").grid(row=0,column=0)
         Label(cha3,text="college Name").grid(row=0,column=1)
@@ -1783,9 +1788,9 @@ def show_colleges():
             Label(cha3,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
             Label(cha3,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
             i+=1   
-
+        cha3.mainloop()
     def show4() :
-        cha4=Tk()
+        cha4=Toplevel()
         cha4.geometry("500x400+0+0")
         Label(cha4,text="college id").grid(row=0,column=0)
         Label(cha4,text="college Name").grid(row=0,column=1)
@@ -1802,9 +1807,9 @@ def show_colleges():
             Label(cha4,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
             i+=1   
 
-
+        cha4.mainloop()
     def show5() :
-        cha5=Tk()
+        cha5=Toplevel()
         cha5.geometry("500x400+0+0")
         Label(cha5,text="college id").grid(row=0,column=0)
         Label(cha5,text="college Name").grid(row=0,column=1)
@@ -1820,9 +1825,9 @@ def show_colleges():
             Label(cha5,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
             Label(cha5,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
             i+=1   
-
+        cha5.mainloop()
     def show6() :
-        cha6=Tk()
+        cha6=Toplevel()
         cha6.geometry("600x450+0+0")
         Label(cha6,text="college id").grid(row=0,column=0)
         Label(cha6,text="college Name").grid(row=0,column=1)
@@ -1837,8 +1842,14 @@ def show_colleges():
             Label(cha6,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
             Label(cha6,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
             Label(cha6,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1   
-
+            i+=1 
+        cha6.mainloop()
+            
+     #OptionList=["Bachelor of Education","Bachelor of Economics",,,"BSc Physics","BSc chemistry","BSc biology","BSc mathematics"
+               #               ,"BSc Computer","CA","Journalism and Communication"]
+                              
+                             
+                              
     if(path=="Engineering"):
         display()
         
@@ -1856,7 +1867,7 @@ def show_colleges():
     elif(path=="BBA"):
         show6()
         
-    elif(path=="Design"):
+    elif(path=="Animation/Graphics"):
         show4()
 
     top.mainloop()
