@@ -3,7 +3,7 @@ import sqlite3
 import numpy as np
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
-global variable,lb
+global variable,lb,window,recommendation
 
 
 #==================================================
@@ -51,9 +51,10 @@ def Home():
     Form.pack(side='top', fill='both', expand='yes')
     close = PhotoImage(master=top, file="close.png")
     Button(top, bd=0, image=close, bg=lightBG, activebackground=lightBG, command=top.destroy).place(x=1320,y=10)
-    btn_login = Button(Form, text="Sign IN", width=25, command=login_window)
-    btn_login.place(x=900, y=40)
-    btn_login.bind('<Return>',login_window )
+    sign_in = PhotoImage(file="sign_in.png")
+    btn_sign = Button(Form, text="Sign IN",image=sign_in, command=login_window)
+    btn_sign.place(x=1200, y=10)
+    btn_sign.bind('<Return>',login_window )
     top.mainloop()
 
 def Signup_window():
@@ -92,12 +93,14 @@ def Signup_window():
     password = Entry(Form1, textvariable=PASSWORD, show="*", font=(14))
     password.place(x=570, y=440)
     
-    btn_Signup = Button(Form1, text="Sign Up", width=45, command=Signup)
+    sign_up = PhotoImage(file="signup_button.png")
+    btn_Signup = Button(Form1, text="Sign Up", image=sign_up, command=Signup)
     btn_Signup.place(x=450, y=500)
     btn_Signup.bind('<Return>', Signup)
-    btn_login = Button(Form1, text="Sign IN", width=25, command=login_window)
-    btn_login.place(x=900, y=40)
-    btn_login.bind('<Return>',login_window )
+    sign_in = PhotoImage(file="sign_in.png")
+    btn_sign = Button(Form1, text="Sign IN",image=sign_in, command=login_window)
+    btn_sign.place(x=1200, y=10)
+    btn_sign.bind('<Return>',login_window )
     top.mainloop()
 def Signup():
         
@@ -160,7 +163,8 @@ def login_window():
     password.place(x=170, y=540)
     
     flag=0
-    btn_login = Button(Form, text="Login", width=45, command=Login)
+    login_button = PhotoImage(file="login_button.png")
+    btn_login = Button(Form, text="Login", image=login_button, command=Login)
     btn_login.place(x=50, y=600)
     btn_login.bind('<Return>', Login)
     btn_signup = Button(Form, text="New User Sign Up", width=25, command=Signup_window)
@@ -1421,23 +1425,23 @@ def fuzzy_calculator(inputs):
 
     practical['l']=fuzz.trimf(practical.universe,[0,10,15])
     practical['m']=fuzz.trimf(practical.universe,[12,15,24])
-    practical['h']=fuzz.trimf(practical.universe,[22,26,30])
+    practical['h']=fuzz.trimf(practical.universe,[22,26,31])
 
     theory['l']=fuzz.trimf(theory.universe,[0,24,36])
     theory['m']=fuzz.trimf(theory.universe,[24,36,48])
-    theory['h']=fuzz.trimf(theory.universe,[40,60,70])
+    theory['h']=fuzz.trimf(theory.universe,[40,60,71])
 
     attendance['l']=fuzz.trimf(attendance.universe,[0,40,50])
     attendance['m']=fuzz.trimf(attendance.universe,[45,65,80])
-    attendance['h']=fuzz.trimf(attendance.universe,[75,85,100])
+    attendance['h']=fuzz.trimf(attendance.universe,[75,85,101])
 
     project['l']=fuzz.trimf(project.universe,[0,10,15])
     project['m']=fuzz.trimf(project.universe,[13,15,24])
-    project['h']=fuzz.trimf(project.universe,[22,26,30])
+    project['h']=fuzz.trimf(project.universe,[22,26,31])
 
     grade['l']=fuzz.trimf(grade.universe,[0,40,50])
     grade['m']=fuzz.trimf(grade.universe,[45,65,80])
-    grade['h']=fuzz.trimf(grade.universe,[75,85,100])
+    grade['h']=fuzz.trimf(grade.universe,[75,85,101])
 
    
 
@@ -1540,11 +1544,11 @@ def fuzzy_calculator(inputs):
     wm.compute()
     out=wm.output['grade']
     print(out)
-    grade.view(sim=wm)
+    
     return out
 
 def Recommendation_system():
-    
+    global recommendation
     subjects_science=['physics','chemistry','biology','mathematics','English']
     subjects_commerce=['Bussiness','Accounts','Economics','Mathematics','English']
     subjects_Humanities=['History','Geography','Political Science','Physical Education','English']
@@ -1636,6 +1640,7 @@ def Recommendation_system():
     
     path_selection()
 def path_selection():
+    global recommendation
     print(listS1)
     print(listS2)
     print(listS3)
@@ -1680,6 +1685,15 @@ def path_selection():
     btn_go = Button(Form, text="GO", width=25, command=show_colleges)
     btn_go.place(x=950, y=400)
     btn_go.bind('<Return>',show_colleges )
+    
+    lab=[0 for i in range(len(recommendation.values()))]
+    k=0
+    lab1=lab[k]= Label(Form,text="Recommendations matching your profile", font=('Helvetica', 12))
+    lab1.place(x=50,y=540)
+    for i in recommendation:
+        lab[k]= Label(Form,text=str(i)+": "+str(recommendation[i])+"%", font=('Helvetica', 12))
+        lab[k].place(x=50,y=570+k*22)
+        k+=1
     top.mainloop()   
       
 def show_colleges():
@@ -1687,15 +1701,11 @@ def show_colleges():
     
     if window==1:
         top.withdraw()
-    top=Toplevel()
-    top.geometry("1400x700+0+0")
-    top.title("Colleges")
+    
     path=variable.get()
     
     j=0
-    image1 =PhotoImage(file='yu.png')    
-    Form1 = Label(top, image=image1)
-    Form1.pack(side='top', fill='both', expand='yes')
+    
     data=pd.read_csv('temp.csv')
 
     def display():
@@ -1870,8 +1880,8 @@ def show_colleges():
     elif(path=="Animation/Graphics"):
         show4()
 
-    top.mainloop()
-global window
+   
+
 import pandas as pd
 window=0
 Home()
