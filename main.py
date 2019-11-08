@@ -1,3 +1,4 @@
+#importing required libraries
 from tkinter import *
 import sqlite3
 import numpy as np
@@ -13,6 +14,7 @@ from tkcalendar import Calendar
 from tkinter import ttk
 import datetime
 
+#declaring the variables used as global
 global listStr,listS1,listS2,listS3,listS4,listS5
 global second, sub1T ,sub1Tv,sub1Prc,sub1A,sub1P
 global sub2T,sub2Prc,sub2P,sub2A
@@ -30,8 +32,7 @@ first, second, lb= None, None, None
 lightBG, darkBG = "#eafde7", "#44484b"
 splash = None
 nik=None
-name, reg, board, gender,dob , info,stream= None, None , None, None, None, None, None
-cusFont = ("Times New Roman", 12, "bold")
+name, board, gender,dob , info,stream= None, None , None, None, None, None
 
 #===============================================
 from tkinter import messagebox
@@ -222,6 +223,7 @@ def Fill_details():
     #updated validation for subjects
     global lb
     def Splash():
+        #firstWINDOW
         global splash
         splash = Toplevel()
         splash.wm_attributes("-fullscreen","true")
@@ -242,6 +244,8 @@ def Fill_details():
         return
 
     def firstUI():
+        #secondWINDOW
+        #filling_details
         global fin, board, stream, name, info, first, gender,dob
         global sub1Tv, sub1Prcv, sub1Av, sub1Pv, sub1T
         global listStr,listS1,listS2,listS3
@@ -277,6 +281,7 @@ def Fill_details():
         stream= IntVar()
         
         name.place(x=720, y=260)
+        #calendar_CODE
         def example1():
             def print_sel():
                 cal.destroy()
@@ -301,7 +306,7 @@ def Fill_details():
         Radiobutton(first, text="Science",font=("Arial",12), bg=lightBG , variable=stream, value=1).place(x=720, y=390)
         Radiobutton(first, text="Humanities/Arts",font=("Arial",12), bg=lightBG, variable=stream, value=2).place(x=720, y=420)
         Radiobutton(first, text="Commerce",font=("Arial",12), bg=lightBG, variable=stream, value=3).place(x=720, y=450)
-     
+        #ERROR_messages_FONT & COLOUR
         start_img = PhotoImage(file="continue.png")
         Button(first, text="Click Here", relief=RIDGE, image=start_img, bg=darkBG, activebackground=darkBG, bd=0, command=startQuiz).place(x=640, y=590)
         info = Label(first, text="", font=("Helvetica",10), bg=lightBG, fg="red")
@@ -314,6 +319,7 @@ def Fill_details():
         return
 
     def startQuiz():
+        #DO VALIDATION for each INPUT recieved
         global nameVal, regVal, boardVal, dobVal, genVal, difLevel, streamVal,year,checkVal
         global sub1Tv,nik,sub1Prcv,sub1Av,sub1Pv
         nameVal = str(name.get()).title()
@@ -340,12 +346,9 @@ def Fill_details():
             first.destroy()
             secondIN()
             
-        '''elif len(dobVal) !=0:
-            info.config(text="*Please Enter Valid Date Of Birth")
-            return'''
-        
                                     
     def secondIN():
+        #entering MARKS of diff_SUBJECTS
         global listStr,listS1,listS2,listS3,listS4,listS5
         global name, board,stream,info, first, gender,dobf,fin,check,nik
         global second, sub1T ,sub1Tv,sub1Prc,sub1A,sub1P
@@ -523,6 +526,7 @@ def Fill_details():
         second.mainloop()
         return
     def proceed():
+        #creating_LISTS to STORE_INPUTDATA
         global sub1Tv,nik,sub1Prcv,sub1Av,sub1Pv
         global second,std_id 
         global listStr,listS1,listS2,listS3,listS4,listS5
@@ -553,7 +557,7 @@ def Fill_details():
         sub5Av=sub5A.get()
         sub5Pv=sub5P.get()
 
-        #validation for subjects
+        #VALIDATION applied_to_SUBJECTS
         
         if (len(sub1Tv)==0 or len(sub1Tv)>=4) or (len(sub2Tv)==0 or len(sub2Tv)>=4) or(len(sub3Tv)==0 or len(sub3Tv)>=4) or (len(sub4Tv)==0 or len(sub4Tv)>=4) or (len(sub5Tv)==0 or len(sub5Tv)>=4) :
             nik.config(text="Please Enter valid Theory marks!")
@@ -570,7 +574,7 @@ def Fill_details():
         else:
             nik.config(text="click to continue")
             
-        #checking
+        #prints the LIST_CREATED
        
         print("final values")                     
         listS1=[]
@@ -591,14 +595,14 @@ def Fill_details():
         print(listS5)
 
         
-        #DATABASECODE::
+        #DATABASECODE_to_STORE_INPUTDATA::
 
         global coc, cursor,flag,std_id
         coc = sqlite3.connect("databaseNK.db")
         cursor = coc.cursor()
         
         
-        def get_var_value(filename="nikhilK.txt"):
+        def get_var_value(filename="fileML.txt"):
             with open(filename,"a+") as f:
                 f.seek(0)
                 val=int(f.read() or 0) + 1
@@ -648,19 +652,20 @@ def Fill_details():
             
         if streamVal==1:
             streamtext="Science"
-            listStr.extend(["maths","physics","chemistry"])
+            listStr.extend(['physics','chemistry','biology','mathematics','English'])
         elif streamVal==2:
-            streamtext="Commerce"
-            listStr.extend(["history","geography","political.sci"])
+            streamtext="Humanities/Arts"
+            listStr.extend(['History','Geography','Political Science','Physical Education','English'])
 
         else:
-            streamtext="Humanities/Arts"
-            listStr.extend(["accountancy","economics","business.std"])
+            streamtext="Commerce"
+            listStr.extend(['Bussiness','Accounts','Economics','Mathematics','English'])
 
             
             
         print(listStr)
-        
+        #prints the INPUTDATA_STORED
+        #by ACCESSING_THE_DATABASE
         Label(lb, text="Hello", font=("Courier",20,"bold"),bg=lightBG, fg="#27292b").place(x=500,y=25)
         Label(lb, text=" "+nameVal+"!", font=("Courier",20,"bold"),bg=lightBG).place(x=585,y=25) 
         Label(lb, text="Here are the details you have provided!",font=("Courier",15,"bold"),bg=lightBG).place(x=430,y=80)
@@ -706,6 +711,7 @@ def Fill_details():
     def goBack():
         lb.destroy()
         firstUI()
+    #EXECUTION_starts_from_here  
     Splash()
     print("came back to main")
  
