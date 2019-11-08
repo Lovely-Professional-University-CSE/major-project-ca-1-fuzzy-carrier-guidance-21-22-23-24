@@ -1706,154 +1706,306 @@ def show_colleges():
     
     j=0
     
-    data=pd.read_csv('temp.csv')
+    data=pd.read_csv('New Microsoft Excel Worksheet.csv')
 
-    def display():
+ def display():
+    chai=Toplevel()
+     chai.geometry("500x400+0+0")
+     chai.wm_attributes('-fullscreen','true')
+     Label(chai,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+     Label(chai,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+     Label(chai,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+     Label(chai,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+     Label(chai,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=100)
+      A10=Button(chai,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=chai.destroy)
+      A10.grid(row=100,column=200)
 
-        chai=Toplevel()
-        chai.geometry("500x400+0+0")
-        Label(chai,text="college id").grid(row=0,column=0)
-        Label(chai,text="college Name").grid(row=0,column=1)
-        Label(chai,text="NIRF Ranking").grid(row=0,column=2)
-        Label(chai,text="Fees").grid(row=0,column=3)
+    
 
-        i=0
+      i=0
 
-        while i<10:
+       while i<10:
+        Label(chai,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =1)
+        Label(chai,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =2)
+        Label(chai,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column = 3)
+        Label(chai,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column =4)
+        Label(chai,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column =100)
+        i+=1 
 
-            Label(chai,text=str(data['college id'][i])).grid(row = 1 +i, column = 0)
-            Label(chai,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
-            Label(chai,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
-            Label(chai,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1   
-        chai.mainloop()
-    def show():
-        cha=Toplevel()
-        cha.geometry("600x400+0+0")
-        Label(cha,text="college id").grid(row=0,column=0)
-        Label(cha,text="college Name").grid(row=0,column=1)
-        Label(cha,text="NIRF Ranking").grid(row=0,column=2)
-        Label(cha,text="Fees").grid(row=0,column=3)
+  def show():
+    cha=Toplevel()
+     cha.wm_attributes('-fullscreen','true')
+     cha.geometry("600x400+0+0")  
+     Label(cha,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
+     Label(cha,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+     Label(cha,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+     Label(cha,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+     Label(cha,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+      A9=Button(cha,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=cha.destroy)
+      A9.grid(row=20,column=14)
 
-        i=11
 
+       i=11
+    
         while i>10 and i<20:
+            Label(cha,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
+            Label(cha,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+            Label(cha,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+            Label(cha,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+            Label(cha,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+            i+=1
+    
+    
+def show1():
+    cha1=Toplevel()
+    cha1.wm_attributes('-fullscreen','true')
+    cha1.geometry("900x400+0+0")
+    cha1.title("LLB")
+    
+    Label(cha1,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
 
-            Label(cha,text=str(data['college id'][i])).grid(row = 1 +i, column = 0)
-            Label(cha,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
-            Label(cha,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
-            Label(cha,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1 
-        cha.mainloop()
-    def show1():
-        cha1=Toplevel()
-        cha1.geometry("600x400+0+0")
-        Label(cha1,text="college id").grid(row=0,column=0)
-        Label(cha1,text="college Name").grid(row=0,column=1)
-        Label(cha1,text="NIRF Ranking").grid(row=0,column=2)
-        Label(cha1,text="Fees").grid(row=0,column=3)
+    Label(cha1,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha1,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha1,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha1,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A8=Button(cha1,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=cha1.destroy)
+    A8.grid(row=1000,column=100)
 
-        i=22
+    
+    i=22
+    
+    while i>20 and i<32:
+        Label(cha1,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
+        Label(cha1,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha1,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha1,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha1,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1   
+    
 
-        while i>20 and i<32:
-            Label(cha1,text=str(data['college id'][i])).grid(row = 1 +i, column = 0)
-            Label(cha1,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
-            Label(cha1,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
-            Label(cha1,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1   
+def show2() :
+    cha2=Toplevel()
+    cha2.wm_attributes('-fullscreen','true')
+    cha2.geometry("900x400+0+0")
+    cha2.title("Arts")
+    Label(cha2,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
+    Label(cha2,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha2,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha2,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha2,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A7=Button(cha2,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=cha2.destroy)
+    A7.grid(row=1000,column=100)
 
-        cha1.mainloop()
-    def show2() :
-        cha2=Toplevel()
-        cha2.geometry("600x400+0+0")
-        Label(cha2,text="college id").grid(row=0,column=0)
-        Label(cha2,text="college Name").grid(row=0,column=1)
-        Label(cha2,text="NIRF Ranking").grid(row=0,column=2)
-        Label(cha2,text="Fees").grid(row=0,column=3)
+                
+    i=33
+    
+    while i>32 and i<43:
+        Label(cha2,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
+        Label(cha2,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha2,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha2,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha2,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1   
 
-        i=33
+def show3() :
+    cha3=Toplevel()
+    cha3.wm_attributes('-fullscreen','true')
+    cha3.geometry("900x400+0+0")
+    cha3.title("Design")
+    Label(cha3,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
+    Label(cha3,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha3,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha3,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha3,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A6=Button(cha3,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=cha3.destroy)
+    A6.grid(row=1000,column=100)
 
-        while i>32 and i<43:
+            
+    i=44
+    
+    while i>43 and i<53:
+        Label(cha3,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
 
-            Label(cha2,text=str(data['college id'][i])).grid(row = 1 +i, column = 0)
-            Label(cha2,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
-            Label(cha2,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
-            Label(cha2,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1   
-        cha2.mainloop()
-    def show3() :
-        cha3=Toplevel()
-        cha3.geometry("500x400+0+0")
-        Label(cha3,text="college id").grid(row=0,column=0)
-        Label(cha3,text="college Name").grid(row=0,column=1)
-        Label(cha3,text="NIRF Ranking").grid(row=0,column=2)
-        Label(cha3,text="Fees").grid(row=0,column=3)
+        Label(cha3,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha3,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha3,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha3,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1   
+    
+def show4() :
+    cha4=Toplevel()
+    cha4.geometry("900x400+0+0")
+    cha4.wm_attributes('-fullscreen','true')
+    cha4.title("Design")
+    Label(cha4,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
+    Label(cha4,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha4,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha4,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha4,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A5=Button(cha4,text="Dismiss",width=25,height=3,font="Helvetica 16 bold italic",bg="yellow",command=cha4.destroy)
+    A5.grid(row=1000,column=100)
 
-        i=44
+            
+    i=55
+    
+    while i>54 and i<64:
+        Label(cha4,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
 
-        while i>43 and i<53:
+        Label(cha4,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha4,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha4,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha4,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1   
 
-            Label(cha3,text=str(data['college id'][i])).grid(row = 1 +i, column = 0)
-            Label(cha3,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
-            Label(cha3,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
-            Label(cha3,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1   
-        cha3.mainloop()
-    def show4() :
-        cha4=Toplevel()
-        cha4.geometry("500x400+0+0")
-        Label(cha4,text="college id").grid(row=0,column=0)
-        Label(cha4,text="college Name").grid(row=0,column=1)
-        Label(cha4,text="NIRF Ranking").grid(row=0,column=2)
-        Label(cha4,text="Fees").grid(row=0,column=3)
+    
+def show5() :
+    cha5=Toplevel()
+    cha5.geometry("900x400+0+0")
+    cha5.wm_attributes('-fullscreen','true')
 
-        i=55
+    
+    Label(cha5,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)  
+    Label(cha5,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha5,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha5,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha5,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A0=Button(cha5,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=cha5.destroy)
+    A0.grid(row=1000,column=100)
 
-        while i>54 and i<64:
+            
+    i=66
+    
+    while i>65 and i<76:
+        Label(cha5,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
+        Label(cha5,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha5,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha5,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha5,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1   
 
-            Label(cha4,text=str(data['college id'][i])).grid(row = 1 +i, column = 0)
-            Label(cha4,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
-            Label(cha4,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
-            Label(cha4,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1   
+def show6() :
+    cha6=Toplevel()
+    cha6.geometry("1000x450+0+0")
+    cha6.wm_attributes('-fullscreen','true')
 
-        cha4.mainloop()
-    def show5() :
-        cha5=Toplevel()
-        cha5.geometry("500x400+0+0")
-        Label(cha5,text="college id").grid(row=0,column=0)
-        Label(cha5,text="college Name").grid(row=0,column=1)
-        Label(cha5,text="NIRF Ranking").grid(row=0,column=2)
-        Label(cha5,text="Fees").grid(row=0,column=3)
+    cha6.title("BBA")
+    
+    Label(cha6,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
+    Label(cha6,text="college id",font="Helvetica 16 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha6,text="college Name",font="Helvetica 16 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha6,text="NIRF Ranking",font="Helvetica 16 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha6,text="Fees",font="Helvetica 16 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A1=Button(cha6,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=cha6.destroy)
+    A1.grid(row=1000,column=100)
 
-        i=66
+    
+    i=77
+    
+    while i>76 and i<87:
+        Label(cha6,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
+        Label(cha6,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha6,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha6,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha6,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1   
+def show7() :
+    cha7=Toplevel()
+    cha7.geometry("1000x450+0+0")
+    cha7.wm_attributes('-fullscreen','true')
 
-        while i>65 and i<76:
+    cha7.title("BSC Chemistry")
+    Label(cha7,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
+    Label(cha7,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha7,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha7,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha7,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A2=Button(cha7,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=cha7.destroy)
+    A2.grid(row=1000,column=100)
 
-            Label(cha5,text=str(data['college id'][i])).grid(row = 1 +i, column = 0)
-            Label(cha5,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
-            Label(cha5,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
-            Label(cha5,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1   
-        cha5.mainloop()
-    def show6() :
-        cha6=Toplevel()
-        cha6.geometry("600x450+0+0")
-        Label(cha6,text="college id").grid(row=0,column=0)
-        Label(cha6,text="college Name").grid(row=0,column=1)
-        Label(cha6,text="NIRF Ranking").grid(row=0,column=2)
-        Label(cha6,text="Fees").grid(row=0,column=3)
+    
+    i=88
+    
+    while i>87 and i<98:
+        Label(cha7,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
+        Label(cha7,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha7,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha7,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha7,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1   
 
-        i=77
+def show8() :
+    cha8=Toplevel()
+    cha8.geometry("1000x450+0+0")
+    cha8.wm_attributes('-fullscreen','true')
 
-        while i>76 and i<87:
+    Label(cha8,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
+    Label(cha8,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha8,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha8,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha8,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A2=Button(cha8,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=cha8.destroy)
+    A2.grid(row=1000,column=100)
 
-            Label(cha6,text=str(data['college id'][i])).grid(row = 1 +i, column = 0)
-            Label(cha6,text=str(data['Name'][i])).grid(row = 1 +i, column = 1)
-            Label(cha6,text=str(data['NIRF Ranking'][i])).grid(row = 1 +i, column = 2)
-            Label(cha6,text=str(data['Fees(in lakhs)'][i])).grid(row = 1 +i, column = 3)
-            i+=1 
-        cha6.mainloop()
+    
+    i=99
+    
+    while i>98 and i<109:
+        Label(cha8,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
+        Label(cha8,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha8,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha8,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha8,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1   
+def show9() :
+    cha9=Toplevel()
+    cha9.geometry("1000x450+0+0")
+    cha9.wm_attributes('-fullscreen','true')
+
+    cha9.title("Bsc computer science")
+   
+    Label(cha9,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
+    Label(cha9,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha9,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha9,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha9,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A3=Button(cha9,text="Dismiss",width=25,height=3,font="Helvetica 10 bold italic",bg="yellow",command=cha9.destroy)
+    A3.grid(row=1000,column=100)
+
+    i=99
+    
+    while i>98 and i<109:
+        Label(cha9,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
+        Label(cha9,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha9,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha9,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha9,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1
+def show10() :
+    cha10=Toplevel()
+    cha10.geometry("1000x450+0+0")
+    cha10.wm_attributes('-fullscreen','true')
+
+    cha10.title("Bachelor of economic")
+    
+    Label(cha10,text="S.no",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=0)
+    Label(cha10,text="college id",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=1)
+    Label(cha10,text="college Name",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=2)
+    Label(cha10,text="NIRF Ranking",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=3)
+    Label(cha10,text="Fees",font="Helvetica 25 bold italic",fg="red",bg="blue").grid(row=0,column=4)
+    A4=Button(cha10,text="Dismiss",width=25,height=3,font="Helvetica 10  bold italic",bg="yellow",command=cha10.destroy)
+    A4.grid(row=400,column=10)
+
+    i=110
+    
+    while i>109 and i<120:
+        Label(cha10,text=str(data['S.no'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1+i, column =0)
+        Label(cha10,text=str(data['college id'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 1)
+        Label(cha10,text=str(data['Name'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 2)
+        Label(cha10,text=str(data['NIRF Ranking'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 3)
+        Label(cha10,text=str(data['Fees(in lakhs)'][i]),font="Helvetica 16 bold italic",fg="red").grid(row = 1 +i, column = 4)
+        i+=1   
+       
+    
             
      #OptionList=["Bachelor of Education","Bachelor of Economics",,,"BSc Physics","BSc chemistry","BSc biology","BSc mathematics"
                #               ,"BSc Computer","CA","Journalism and Communication"]
