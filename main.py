@@ -169,8 +169,9 @@ def login_window():
     btn_login = Button(Form, text="Login", image=login_button, command=Login)
     btn_login.place(x=50, y=600)
     btn_login.bind('<Return>', Login)
-    btn_signup = Button(Form, text="New User Sign Up", width=25, command=Signup_window)
-    btn_signup.place(x=900, y=40)
+    register_button = PhotoImage(file="register_button.png")
+    btn_signup = Button(Form,image=register_button, command=Signup_window)
+    btn_signup.place(x=1200, y=10)
     btn_signup.bind('<Return>', Signup_window)
     top.mainloop()
 
@@ -1562,7 +1563,7 @@ def fuzzy_calculator(inputs):
     return out
 
 def Recommendation_system():
-    global recommendation
+    global recommendation,lb
     subjects_science=['physics','chemistry','biology','mathematics','English']
     subjects_commerce=['Bussiness','Accounts','Economics','Mathematics','English']
     subjects_Humanities=['History','Geography','Political Science','Physical Education','English']
@@ -1654,7 +1655,7 @@ def Recommendation_system():
     
     path_selection()
 def path_selection():
-    global recommendation
+    global recommendation,lb
     print(listS1)
     print(listS2)
     print(listS3)
@@ -2015,15 +2016,15 @@ def show_colleges():
            
         
                 
-         #OptionList=["Bachelor of Education","Bachelor of Economics",,,"BSc Physics","BSc chemistry","BSc biology","BSc mathematics"
-                   #               ,"BSc Computer","CA","Journalism and Communication"]
-                                  
+          #OptionList=[,"
+                             
+                           
                                  
                               
     if(path=="Engineering"):
         display()
         
-    elif(path=="B.com"):
+    elif(path=="B.Com"):
         show()
     elif(path=="Medical"):
         show1()
@@ -2032,24 +2033,24 @@ def show_colleges():
     elif(path=="BA"):
         show3()
        
-    elif(path=="B.Sc"):
+    elif( path=="BSc biology"):
         show5()
     elif(path=="BBA"):
         show6()
         
-    elif(path=="Arts"):
+    elif(path=="BA"):
         show3()
-    elif(path=="Design"):
+    elif(path=="Animation/Graphics"):
         show4()
     elif(path=="B.Sc Physics"):
         show5()
     elif(path=="B.Sc Chemistry"):
         show7()
-    elif(path=="B.Sc MAthematics"):
+    elif(path=="B.Sc Mathematics"):
         show8()
-    elif(path=="B.Sc Computer Science"):
+    elif(path=="BSc Computer"):
         show9()
-    elif(path=="Bachelor of economic"):
+    else:
         show10()
         
 
